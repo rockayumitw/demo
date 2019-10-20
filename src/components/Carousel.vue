@@ -49,27 +49,43 @@
 }
 </style>
 
-<script>
 
+<script >
+
+</script>
+
+<script>
 // var api = 'https://jsonplaceholder.typicode.com/todos/1'
-var api = '/data/json/carousel.json'
+// var api = '/data/json/carousel.json'
 
 export default {
   data () {
     return {
       baseUrl: process.env.VUE_APP_BASE_URL,
-      carouselList: []
+      carouselList: [{
+        "pic1":"../assets/DSC06921.png",
+        "pic2":"../assets/DSC06921.png",
+        "pic3":"../assets/DSC06921.png"
+      }]
     }
   },
   methods: {
-    carousel () {
-      this.axios.get(api).then((res) => {
-        console.log(res)
-      })
+    getCarousel(){
+
     }
+    //json格式撈取
+    // carouselGetList () {
+    //   this.axios.get(api).then((res) => {
+    //     console.log(res)
+    //   })
+    // }
   },
   created () {
-     this.carousel();
+    //json格式撈取
+    //  this.carouselGetList();
+     this.$http.get('api/carousel').then((res)=>{
+        console.log(res)
+      })
   }
 }
 </script>
