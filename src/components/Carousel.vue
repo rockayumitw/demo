@@ -13,7 +13,6 @@
         <div class="carousel-item active">
           <img class="d-block w-100" src="../assets/DSC06921.png"/>
         </div>
-
         <div class="carousel-item">
           <img class="d-block w-100" src="../assets/DSC06921.png"/>
         </div>
@@ -53,7 +52,7 @@
 <script>
 
 // var api = 'https://jsonplaceholder.typicode.com/todos/1'
-var api = '../json/carousel.json'
+var api = '/data/json/carousel.json'
 
 export default {
   data () {
@@ -64,13 +63,13 @@ export default {
   },
   methods: {
     carousel () {
-      // this.axios.get(baseUrl+'carousel.json').then((response) => {
-      //   console.log(response.data)
-      // })
+      this.axios.get(api).then((res) => {
+        console.log(res)
+      })
     }
   },
   created () {
-    // this.carousel();
+     this.carousel();
   }
 }
 </script>
