@@ -25,8 +25,8 @@
         <div class="form-group floating-label-form-group controls mb-0 pb-2">
           <label>{{ $t('email') }}</label>
           <input v-model="email" v-focus v-validation
-            class="form-control"
             id="email"
+            class="form-control email"
             type="email"
             placeholder="Email Address"
             required="required"
@@ -69,7 +69,7 @@
       <br />
       <div id="success"></div>
       <div class="form-group">
-        <button type="submit" @click='showalert' class="btn btn-primary btn-xl" id="sendMessageButton">Send</button>
+        <button type="submit" @click.prevent='submitTable' class="btn btn-primary btn-xl" id="sendMessageButton">Send</button>
       </div>
     </form>
     </div>
@@ -91,7 +91,9 @@ export default {
   data () {
     return {
       name: '',
-      email: ''
+      email: '',
+      phone:'',
+      message:'',
     }
   },
   directives: {
@@ -104,19 +106,32 @@ export default {
     validation: {
       update: function (el, binding, vnode) {
         var value = el.value
-        var emailReg = ''
-        if (value == 'test') {
-          $('.text-danger').text('test')
+        var emailRegx = '/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/'
+        var emailInput = $('#email').value
+        // console.log(el,value)
+        console.log(el,vnode)
+        if(!emailRegx.test(emailInput)){
+          console.log('err')
         }
+        
+        // if (value == 'test') {
+        //   $('.text-danger').text('test')
+        // }
       },
       bind: function (el, binding, vnode) {
-        // console.log('binding',el,binding,vnode)
+         //console.log('binding',el,binding,vnode)
       }
     }
   },
   methods: {
-    showalert () {
-      this.$swal('送出')
+    // submitTable () {
+    //   this.$swal('送出')
+    // }
+    submitTable(){
+       if($('#email').value == ''){
+         console.log('email欄位不得為空')
+          this.$swal('email欄位不得為空')
+        }
     }
   }
 }
